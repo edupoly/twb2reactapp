@@ -5,7 +5,6 @@ function App() {
     <div>
       <Navbar></Navbar>
       <h1>Hello App</h1>
-      <Counter></Counter>
     </div>
   );
 }
