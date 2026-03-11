@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useCallback } from "react";
+import Todo from "./Todo";
 
 function Todolist() {
   const [todos, setTodos] = React.useState([
     "goto goa",
     "watch movie",
     "play cricket",
+    "kill bill pandey",
+    "maddali sivareddy",
   ]);
   const [ntd, setNtd] = React.useState("");
   function addTodo() {
@@ -14,12 +17,12 @@ function Todolist() {
       return [...ctodos];
     });
   }
-  function handleDelete(ind) {
+  const handleDelete = useCallback(function (ind) {
     setTodos((ctodos) => {
       ctodos.splice(ind, 1);
       return [...ctodos];
     });
-  }
+  }, []);
   return (
     <div className="p-2 m-2 border border-2 rounded">
       <h1>Todo List</h1>
@@ -38,18 +41,7 @@ function Todolist() {
       </button>
       <ul>
         {todos.map((todo, i) => {
-          return (
-            <li className="border border-2 border-success rounded m-2 p-2">
-              {todo}
-              <button
-                onClick={() => {
-                  handleDelete(i);
-                }}
-              >
-                Delete
-              </button>
-            </li>
-          );
+          return <Todo todo={todo} i={i} delTodo={handleDelete}></Todo>;
         })}
       </ul>
     </div>
