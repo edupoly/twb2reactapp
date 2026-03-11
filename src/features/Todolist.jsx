@@ -1,10 +1,13 @@
 import React from "react";
+import Todo from "./Todo";
 
 function Todolist() {
   const [todos, setTodos] = React.useState([
     "goto goa",
     "watch movie",
     "play cricket",
+    "kill bill pandey",
+    "Siva reddy",
   ]);
   const [ntd, setNtd] = React.useState("");
   function addTodo() {
@@ -39,16 +42,7 @@ function Todolist() {
       <ul>
         {todos.map((todo, i) => {
           return (
-            <li className="border border-2 border-success rounded m-2 p-2">
-              {todo}
-              <button
-                onClick={() => {
-                  handleDelete(i);
-                }}
-              >
-                Delete
-              </button>
-            </li>
+            <Todo todo={todo} i={i} delTodo={handleDelete} key={todo}></Todo>
           );
         })}
       </ul>
