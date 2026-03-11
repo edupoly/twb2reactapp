@@ -1,7 +1,8 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import Todo from "./Todo";
 
 function Todolist() {
+  const myref = useRef();
   const [todos, setTodos] = React.useState([
     "goto goa",
     "watch movie",
@@ -29,6 +30,9 @@ function Todolist() {
       return [...ctodos];
     });
   }, []);
+  useEffect(() => {
+    myref.current.focus();
+  }, []);
   return (
     <div className="p-2 m-2 border border-2 rounded">
       <h1>Todo List</h1>
@@ -37,6 +41,7 @@ function Todolist() {
         onChange={(e) => {
           setNtd(e.target.value);
         }}
+        ref={myref}
       />
       <button
         onClick={() => {
