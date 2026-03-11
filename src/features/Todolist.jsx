@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import Todo from "./Todo";
 
 function Todolist() {
@@ -9,6 +9,12 @@ function Todolist() {
     "kill bill pandey",
     "maddali sivareddy",
   ]);
+  const pdata = useMemo(() => {
+    return {
+      firstname: "Praveen",
+      age: 23,
+    };
+  }, []);
   const [ntd, setNtd] = React.useState("");
   function addTodo() {
     // setTodos([...todos, ntd]);
@@ -41,7 +47,9 @@ function Todolist() {
       </button>
       <ul>
         {todos.map((todo, i) => {
-          return <Todo todo={todo} i={i} delTodo={handleDelete}></Todo>;
+          return (
+            <Todo todo={todo} pdata={pdata} i={i} delTodo={handleDelete}></Todo>
+          );
         })}
       </ul>
     </div>
