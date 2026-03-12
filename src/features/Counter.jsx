@@ -1,18 +1,24 @@
 import React from "react";
-import Button from "@mui/material/Button";
-function ButtonUsage(props) {
-  return <Button variant="contained">{props.children}</Button>;
-}
+import { useCounter } from "../hooks/useCounter";
 function Counter() {
-  const [count, setCount] = React.useState(0);
-  function inc(){
-    setCount(count+1)
-  }
+  var [count, incCounter, decCounter] = useCounter();
   return (
     <div className="mybox">
       <h1>Counter:{count}</h1>
-      <ButtonUsage>Increment</ButtonUsage>
-      <ButtonUsage>Decrement</ButtonUsage>
+      <button
+        onClick={() => {
+          incCounter();
+        }}
+      >
+        Increment
+      </button>
+      <button
+        onClick={() => {
+          decCounter();
+        }}
+      >
+        Decrement
+      </button>
     </div>
   );
 }
