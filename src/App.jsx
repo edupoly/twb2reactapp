@@ -5,12 +5,20 @@ import Another from "./Another";
 function App() {
   const ref1 = useRef();
   const ref2 = useRef();
+  const ref3 = useRef();
+  const ref4 = useRef();
+
   useEffect(() => {
     ref1.current.focus();
   }, []);
   function handleRef1(ev) {
     if (ev.key === "Enter") {
       ref2.current.focus();
+    }
+  }
+  function handleSecondInput(e) {
+    if (e.key === "Enter") {
+      ref3.current.focus();
     }
   }
   return (
@@ -27,8 +35,17 @@ function App() {
       <br />
       <br />
       <br />
-      <input type="text" ref={ref2} />
-      <Another></Another>
+      <input
+        type="text"
+        ref={ref2}
+        onKeyUp={(ev) => {
+          handleSecondInput(ev);
+        }}
+      />
+      <Another aref={ref3} cref={ref4}></Another>
+      <br />
+      <br />
+      <input type="text" placeholder="Enter city name" ref={ref4} />
     </div>
   );
 }
