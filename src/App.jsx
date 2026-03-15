@@ -1,10 +1,55 @@
+import { Outlet, Link, NavLink } from "react-router-dom";
 import Navbar from "./component/Navbar";
-import Counter from "./features/Counter";
 function App() {
   return (
-    <div>
+    <div className="m-4 p-2">
       <Navbar></Navbar>
+      <NavLink
+        to="/counter"
+        className={({ isActive }) => {
+          return isActive ? "bg-success text-light text-decoration-none" : "";
+        }}
+      >
+        Counter
+      </NavLink>
+      <br />
+      <NavLink
+        to="/todolist"
+        className={({ isActive }) => {
+          return isActive ? "bg-success text-light text-decoration-none" : "";
+        }}
+      >
+        Todolist
+      </NavLink>
+      <br />
+      <NavLink
+        to="/products"
+        className={({ isActive }) => {
+          return isActive ? "bg-success text-light text-decoration-none" : "";
+        }}
+      >
+        Products
+      </NavLink>
+      <br />
+      <NavLink
+        to="/recipes"
+        className={({ isActive }) => {
+          return isActive ? "bg-success text-light text-decoration-none" : "";
+        }}
+      >
+        Recipes
+      </NavLink>
+      <br />
+      <NavLink
+        to="/posts"
+        className={({ isActive }) => {
+          return isActive ? "bg-success text-light text-decoration-none" : "";
+        }}
+      >
+        Posts
+      </NavLink>
       <h1>Hello App</h1>
+      <Outlet></Outlet>
     </div>
   );
 }

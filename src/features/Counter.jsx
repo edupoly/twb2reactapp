@@ -5,14 +5,15 @@ function ButtonUsage(props) {
 }
 function Counter() {
   const [count, setCount] = React.useState(0);
-  function inc(){
-    setCount(count+1)
+  function inc() {
+    setCount(count + 1);
   }
   return (
     <div className="mybox">
       <h1>Counter:{count}</h1>
-      <ButtonUsage>Increment</ButtonUsage>
-      <ButtonUsage>Decrement</ButtonUsage>
+      <Button variant="contained" onClick={inc}>
+        Increment
+      </Button>
     </div>
   );
 }
