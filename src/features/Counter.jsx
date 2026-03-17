@@ -1,18 +1,25 @@
-import React from "react";
-import Button from "@mui/material/Button";
-function ButtonUsage(props) {
-  return <Button variant="contained">{props.children}</Button>;
-}
+import { useReducer } from "react";
+import { counterReducer } from "./reducers";
 function Counter() {
-  const [count, setCount] = React.useState(0);
-  function inc(){
-    setCount(count+1)
-  }
+  var [state, dispatch] = useReducer(counterReducer, { count: 0 });
+
   return (
     <div className="mybox">
-      <h1>Counter:{count}</h1>
-      <ButtonUsage>Increment</ButtonUsage>
-      <ButtonUsage>Decrement</ButtonUsage>
+      <h1>Counter:{state.count}</h1>
+      <button
+        onClick={() => {
+          dispatch({ type: "INC" });
+        }}
+      >
+        Increment
+      </button>
+      <button
+        onClick={() => {
+          dispatch({ type: "DEC" });
+        }}
+      >
+        Decrement
+      </button>
     </div>
   );
 }
