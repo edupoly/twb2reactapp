@@ -1,5 +1,5 @@
 import Navbar from "./component/Navbar";
-import Counter from "./features/Counter";
+
 function App() {
   return (
     <div>
