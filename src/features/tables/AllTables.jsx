@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function AllTables() {
   var { isLoading: isTablesLoading, data: tableData } = useGetAllTablesQuery();
   return (
-    <div>
+    <div className="w-75 mx-auto mt-5">
       <h1>AllTables</h1>
       {isTablesLoading && <b>...Loading</b>}
       {!isTablesLoading && (

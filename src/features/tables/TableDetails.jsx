@@ -1,16 +1,21 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import AllItems from "../Items/AllItems";
+import TableOrders from "./TableOrders";
 
 function TableDetails() {
-  var x = useLocation();
-  console.log(x);
+  var {
+    state: { tableName },
+  } = useLocation();
+
   return (
-    <div>
-      <h1>TableDetails</h1>
-      <Link to="/allItems" state={x.state}>
-        Add Order
-      </Link>
-    </div>
+    <>
+      <h1>{tableName.toUpperCase()}: Details</h1>
+      <div className="d-flex flex-wrap">
+        <AllItems></AllItems>
+        <TableOrders></TableOrders>
+      </div>
+    </>
   );
 }
 
