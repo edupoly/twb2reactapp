@@ -33,6 +33,7 @@ function Stopwatch() {
         onClick={() => {
           play();
         }}
+        className="btn btn-success"
       >
         Play
       </button>
@@ -40,10 +41,12 @@ function Stopwatch() {
         onClick={() => {
           pause();
         }}
+        className="btn btn-warning"
       >
         Pause
       </button>
       <button
+        className="btn btn-primary"
         onClick={() => {
           stop();
         }}
