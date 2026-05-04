@@ -1,39 +1,54 @@
 // Need to use the React-specific entry point to import createApi
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 
 // Define a service using a base URL and expected endpoints
 export const todosApi = createApi({
   reducerPath: "todosApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/todos" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3600/todos" }),
+  refetchOnFocus: true,
   endpoints: (builder) => ({
     getAllTodos: builder.query({
-      query: () => `/`,
-    }),
-    addNewTodo: builder.mutation({
-      query: (ntd) => {
+      query: () => {
         return {
+          method: "GET",
           url: "/",
-          method: "POST",
-          body: {
-            title: ntd,
-            status: "not completed",
+          headers: {
+            token: window.localStorage.getItem("token"),
           },
+        };
+      },
+    }),
+    addTodo: builder.mutation({
+      query: (todo) => {
+        return {
+          method: "POST",
+          url: "/",
+          headers: {
+            token: window.localStorage.getItem("token"),
+          },
+          body: { todo },
         };
       },
     }),
     deleteTodo: builder.mutation({
       query: (id) => {
         return {
-          url: `/${id}`,
           method: "DELETE",
+          url: `/${id}`,
+          headers: {
+            token: window.localStorage.getItem("token"),
+          },
         };
       },
     }),
     updateTodo: builder.mutation({
       query: (todo) => {
         return {
-          url: `/${todo.id}`,
           method: "PUT",
+          url: `/${todo.id}`,
+          headers: {
+            token: window.localStorage.getItem("token"),
+          },
           body: todo,
         };
       },
@@ -45,8 +60,8 @@ export const todosApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetAllTodosQuery,
-  useAddNewTodoMutation,
   useLazyGetAllTodosQuery,
+  useAddTodoMutation,
   useDeleteTodoMutation,
   useUpdateTodoMutation,
 } = todosApi;
